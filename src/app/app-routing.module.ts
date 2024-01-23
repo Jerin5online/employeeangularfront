@@ -6,19 +6,21 @@ import { UsersComponent } from './users/users.component';
 import { ListComponent } from './list/list.component';
 import { AddComponent } from './add/add.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { authGuard } from './guards/auth.guard';
+
 
 const routes: Routes = [
   {
     path:"",component:LoginComponent,
 },
 {
-  path:"dashboard",component:DashboardComponent
+  path:"dashboard",component:DashboardComponent,canActivate:[authGuard]
 },
 {
   path:"users",component:UsersComponent
 },
 {
-  path:"employees",component:ListComponent
+  path:"employees",component:ListComponent,canActivate:[authGuard]
 },
 {
   path:"employee/add",component:AddComponent

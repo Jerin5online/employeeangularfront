@@ -37,7 +37,7 @@ export class LoginComponent {
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
-              text: 'Please fill the form completely!',
+              text: 'incorrect',
             });
 
 
@@ -48,6 +48,12 @@ export class LoginComponent {
               title: 'Login Successful',
               text: 'You are now logged in!',
             });
+            //save admin name and password
+
+            this.api.updateData({d:true})
+            
+            localStorage.setItem("name",res.name)
+            localStorage.setItem("pswd",res.password)
 //navigate
 this.router.navigateByUrl('dashboard')
 

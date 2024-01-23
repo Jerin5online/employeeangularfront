@@ -12,29 +12,31 @@
     
     
 
-    <div id="b4" style="margin-top:10%;border-radius: 10px; margin-left:27%;" class="border shadow p-5 w-50 h-50  ">
+    <div id="b4" style="margin-top:4%;border-radius: 10px; margin-left:27%;" class="border shadow p-5 w-50 h-50  ">
 
-        <input type="text" class="form-control mb-3" placeholder="User id" name="userid">
-        <input type="text" class="form-control mb-3" placeholder="enter username" name="password">
-        <input type="text" class="form-control mb-3" placeholder=" enter email" name="password">
+        <input type="text" class="form-control mb-3" placeholder="User id" name="userid" [(ngModel)]="employee.id" required pattern="[0-9]" #employeeid="ngModel" disabled>
+        <span *ngIf="employeeid.invalid && employeeid.touched" class="text-danger">Invalid User Id</span>
+        <input type="text" class="form-control mb-3" placeholder="enter username" name="password"  [(ngModel)]="employee.name" required pattern="^[a-zA-Z]{3,}$" #employeename="ngModel" id=""  >
+
+        <span *ngIf="employeename.invalid && employeename.touched" class="text-danger">Invalid Username</span>
+        <input type="text" class="form-control mb-3" placeholder=" enter email" name="password"  [(ngModel)]="employee.email" required email #employeeemail="ngModel" id="" >
+        <span *ngIf="employeeemail.invalid && employeeemail.touched" class="text-danger">Invalid Email</span>
         
             
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Status
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Active</a></li>
-            <li><a class="dropdown-item" href="#">Inactive</a></li>
-           
-          </ul>
-        </div>
+        <div class="form-floating mb-3">
+          <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="empstatus" [(ngModel)]="employee.status" required #employeestatus="ngModel">
+              <option selected>Open this select menu</option>
+              <option value="1">Active</option>
+              <option value="2">Inactive</option>
+          </select>
+          <label for="floatingSelect">Status</label>
+      </div>
 
 
-        <button style="border-color: red;" class="btn btn-success mt-5 bg-danger">cancel</button>
+        <button (click)="Cancelbutton(employee.id)" style="border-color: red;" class="btn btn-success  bg-danger">cancel</button>
 
        
-        <button class="btn btn-success mt-5 text-dark ms-5">Submit</button>
+        <button (click)="editEmployee(employee.id)" class="btn btn-success text-dark ms-5">Update</button>
 
 
       </div>
